@@ -5,7 +5,7 @@ const db = mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("Database connected!"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(err)) ;
 
 const { ObjectID } = require("bson");
 const { ObjectId } = require("mongodb");
