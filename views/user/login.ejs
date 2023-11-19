@@ -1,0 +1,115 @@
+<section>
+  <div class="page-header breadcrumb-wrap">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/" rel="nofollow">Home</a>
+        <span></span> Pages <span></span> Login / Register
+      </div>
+    </div>
+  </div>
+  <main class="main">
+    <section class="p-auto my-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 m-auto">
+            <div class="row d-flex justify-content-center">
+              <div class="col-lg-6">
+                <div
+                  class="login_wrap widget-taber-content p-30 background-white border-radius-10 mb-md-5 mb-lg-0 mb-sm-5"
+                >
+                  <div class="padding_eight_all bg-white">
+                    
+                    <div class="heading_s1">
+                      <h5 class="mb-30">REGISTERED CUSTOMERS</h5>
+                    </div>
+                    <%if (locals.blockedStatus){%>
+                      <p style="color: red;">SORRY,YOU ARE BLOCKED! </p>
+                      <%}%>
+
+                      <%if(locals.loginStatus==false){%>
+                        <p style="color: red;">INVALID PASSWORD OR EMAIL </p>
+                        <%}%>
+                    <form action="/login" method="post">
+                      <div class="form-group">
+                        <input
+                          type=""
+                          required=""
+                          name="email"
+                          placeholder="Your Email/Mobile Number"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <input
+                          required=""
+                          type="password"
+                          name="password"
+                          placeholder="Password"
+                        />
+                      </div>
+                      <div class="login_footer form-group">
+                        <div class="chek-form">
+                          <div class="custome-checkbox">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              name="checkbox"
+                              id="exampleCheckbox1"
+                              value=""
+                            />
+                            <label
+                              class="form-check-label"
+                              for="exampleCheckbox1"
+                              ><span>Remember me</span></label
+                            >
+                          </div>
+                        </div>
+                        <a class="text-muted" href="#">Forgot password?</a>
+                      </div>
+
+
+                      <div class="form-group"  >
+                        <button
+                          type="submit"
+                          class="btn btn-fill-out btn-block hover-up"
+                          name="login"
+                          style="width: 100%;background-color: black;" 
+                        >
+                          Log in
+                        </button>
+                      
+                      </div>
+                      <div>
+                        <a type="submit"
+                        class="btn btn-fill-out btn-block hover-up"
+                        name="login"
+                        style="width: 100%; height:47px" href="/otplogin">login with OTP</a>
+                      </div>
+                      <hr>
+                      <div>
+                        <a class="ms-5" href="/signup"
+                          >New ? Create An Account</a
+                        >
+                      </div>
+                    </form>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="main">
+          <div class="col-lg-5">
+          </div>
+        </div>
+      </div>
+    </section>
+      </div>
+    </div>
+  </footer>
+  
+ 
+</section>

@@ -1,0 +1,183 @@
+<style>
+    .disabled {
+        pointer-events: none;
+        opacity: 0.8;
+        background-color: aliceblue
+        /* optional - to indicate the element is disabled */
+    }
+.text-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-weight: bold;
+    }
+    
+</style>
+
+
+<body>
+    <!-- Quick view -->
+   
+    <main class="main">
+        
+        <section class="mt-50 mb-50">
+            <div class="container">
+                
+                <div class="row flex-row-reverse">
+                    <!-- filter -->
+                    <div class="col-lg-3 primary-sidebar sticky-sidebar">
+                        <div class="widget-category mb-30">
+                            <h5 class="section-title style-1 mb-30 wow fadeIn animated">Category</h5>
+                            <ul class="categories">
+                                <% cat.forEach(function(cat,index) { %>
+                                <li><a href="/category/<%=cat._id%>"><%=cat.CategoryName%></a></li>
+                                <% }) %>
+                            </ul>
+                            
+                        </div>
+                        <form id="sort-form" method="POST" action="/sort">
+                            <div class="sort-container">
+                             
+                               
+                              </select>
+                            </div>
+                          </form>                      
+                    </div>
+                    <div class="col-lg-9">
+                       
+                        <div class="row product-grid-3">
+                            <% response.forEach(function(response,index) { %>
+                                <% if(response.Quantity<1){%>
+                                    <div class="col-lg-4 col-md-4 col-12 col-sm-6 disabled" >
+                                        <div class="product-cart-wrap mb-30 ">
+                                            <div class="product-img-action-wrap">
+                                                <div class="product-img product-img-zoom">
+                                                    <span class="text-center text-danger" style="font-weight: bold;">
+                                                        <div class="otofstock" style="position: absolute; top: 0; text-align: center; top: 50%;background-color: beige;">OUT OF STOCK
+                                                        </div>
+                                                    </span>
+                                                    <a href="/zoomView/<%= response._id %>">
+                                                        <img class="default-img" src="/uploads/<%= response.Image[0] %>" alt="">
+                                                        <!-- <img class="hover-img" src="assets/imgs/shop/product-7-1.jpg" alt=""> -->
+                                                        
+                                                    </a>
+
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Quick view" href="/zoomView/<%= response._id %>" class="action-btn hover-up" >
+                                                    <i class="fi-rs-search"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn hover-up" onclick="addToWish('<%= response._id %>')"><i class="fi-rs-heart"></i></a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="/shop-product"><%=response.category%></a>
+                                                </div>
+                                                <h2><a href="/shop-product"><%=response.Productname%></a></h2>
+                                               
+                                                <div class="product-price">
+                                                    <span>₹ <%=response.Price%></span>
+                                                </div >
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                <%}else{%>
+                                    
+                                    <div class="col-lg-4 col-md-4 col-12 col-sm-6 " >
+                                        <div class="product-cart-wrap mb-30 ">
+                                            <div class="product-img-action-wrap">
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="/zoomView/<%= response._id %>">
+                                                        <img class="default-img" src="/uploads/products/<%= response.Image[0] %>" alt="">
+                                                        <!-- <img class="hover-img" src="assets/imgs/shop/product-7-1.jpg" alt=""> -->
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Quick view" href="/zoomView/<%= response._id %>" class="action-btn hover-up" >
+                                                    <i class="fi-rs-search"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn hover-up" onclick="addToWish('<%= response._id %>')"><i class="fi-rs-heart"></i></a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="/shop-product"><%=response.category%></a>
+                                                </div>
+                                                <h2><a href="/shop-product"><%=response.Productname%></a></h2>
+                                               
+                                                <div class="product-price">
+                                                    <span>₹ <%=response.Price%></span>
+                                                </div >
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%} %>
+                            
+                             <% }) %>
+                        </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div style="padding-left: 15cm;" class="pagination-area mt-15 mb-sm-5 mb-lg-0">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-start">
+                    <% for(let i=1;i<=pages;i++){%>
+                    <li class="page-item active">
+                      <a class="page-link" href="/shop?page=<%= i %>"><%= i%></a>
+                    </li>
+    
+                    <%}%>
+    
+                    <li class="page-item">
+                      <a class="page-link" href="#"
+                        ><i class="fi-rs-angle-double-small-right"></i
+                      ></a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+        </section>
+    </main>    
+</body>
+</html>
+
+<script>
+    function addToWish(proId) {
+            // console.log("api vall");
+            console.log(proId,"llllll");
+            
+            $.ajax ({
+                url: `/wishlist/${proId}`,
+                method: 'get',
+                success: (response) => {
+                   
+                    console.log(response);
+                    if(response.status) {
+                        // alert("wowww")
+                        // location.reload();
+                        Toastify({
+                            text: "ADDED TO YOUR WISHLIST",
+                            duration: 3000,
+                            gravity: "bottom",
+                            position: "center",
+                            style: {
+                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                            }
+                            }).showToast();
+                           
+                    }
+                }
+            })
+        }
+    
+</script>
